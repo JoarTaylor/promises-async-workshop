@@ -1,7 +1,7 @@
-import './style.css'
-import { setupCounter } from './counter.js'
-import {testModule} from './utils';
+import './style.css';
+import {getWeatherByLocation} from './utils';
 import axios from 'axios';
+
 
 const url = 'https://api.unsplash.com/search/photos?query=stockholm&client_id=lBDpFxePt9iI1ujvaCfI4GwRQOUul3nzGAfICuVJst0';
 
@@ -10,6 +10,8 @@ const getImage = () => {
     let randInt = Math.floor(Math.random() * response.data.results.length)
     document.getElementById("image").src = response.data.results[randInt].urls.raw;
     document.querySelector('.publisher').textContent = 'Made By: ' + response.data.results[randInt].user.name
+  }).catch(error => {
+    document.querySelector('.publisher').textContent = `Could not load image: ${error}`;
   })
 }
 
@@ -21,4 +23,4 @@ document.querySelector('#app').innerHTML = `
     <div class="publisher": "></div>
   </div>
 `
-
+getWeatherByLocation();
