@@ -9,7 +9,7 @@ export const getWeather = (url) => {
     return axios.get(url).then(response => {
       console.log(response.data)   
 
-      const cityCard = document.createElement('div');
+      const cityCard = document.querySelector('.city-card');
 
       const imgSrc = "https://openweathermap.org/img/w/" + response.data.weather[0].icon + ".png";
 
