@@ -1,13 +1,12 @@
 import axios from 'axios';
-
+const astroEL = document.querySelector('.astronomical');
 
 export const  getWeatherByLocation = function() {
     getLocation();
 }
 
 export const getWeather = (url) => {
-    return axios.get(url).then(response => {
-      console.log(response.data)   
+    return axios.get(url).then(response => { 
 
       const cityCard = document.querySelector('.city-card');
 
@@ -30,8 +29,23 @@ function getLocation() {
   }
 }
 
-function showPosition(position) {
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&appid=96196581009ceee5cfcf8592e7cb5eb4`;
+export const showPosition = function(position) {
+    
+
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=96196581009ceee5cfcf8592e7cb5eb4`;
 
     getWeather(url)
+
+    const astroUrl = 'https://api.ipgeolocation.io/astronomy?apiKey=f545deabe46440ea86e651b6181b395b&lat=' + lat + '&long=' + lon;
+    getAstronomical(astroUrl);
+}
+const getAstronomical = (url) => {
+  return axios.get(url).then(response => {
+      astroEL.innerHTML = `Sunrise:  ${response.data.sunrise} <br> Sunset: ${response.data.sunset} <br> Moonrise:  ${response.data.moonrise} <br> Moonset: ${response.data.moonset}`
+  }).catch(error => {
+    console.log(error);
+  })
 }

@@ -1,5 +1,5 @@
 import './style.css';
-import {getWeatherByLocation, parseDate} from './utils';
+import {getWeatherByLocation, parseDate, getDogBreed} from './utils';
 import axios from 'axios';
 
 
@@ -21,8 +21,13 @@ getImage();
 
 getWeatherByLocation();
 
-const newDate = new Date();
-const unixTime = newDate.getTime()
+
 setInterval(() => {
+  const newDate = new Date();
+  const unixTime = newDate.getTime()
   parseDate(unixTime)
 }, 1000);
+
+const dogUrl = 'https://dog.ceo/api/breeds/list/all';
+
+getDogBreed(dogUrl);
