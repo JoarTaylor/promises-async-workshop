@@ -11,37 +11,29 @@ for (let i = 0; i < 5; i++) {
     let myPromise = new Promise((resolve, reject) => {
         let getImg = () => {
             return axios.get(url).then(response => {
-                console.log(response.data.results[i].urls.raw);
                 resolve(response.data.results[i].urls.raw)
+            }).catch(error => {
+                reject(error)
+                let errorEl = document.createElement('p');
+                errorEl.textContent = error;
+                imagesModal.appendChild(errorEl);
             })
         }
         getImg();
     })
 
     promiseArr.push(myPromise);
+    console.log(promiseArr)
 }
 
     Promise.all(promiseArr).then((values) => {
         values.forEach(value => {
             let image = document.createElement('img');
             image.src = value;
-            image.style.height = '80px';
-            image.style.width = '80px';
+            image.style.height = '15vh';
+            image.style.width = '15vw';
             image.style.margin = '5px'
             imagesModal.appendChild(image);
         })
     })
 }
-
-
-/* const promise1 = Promise.resolve(3);
-const promise2 = 42;
-const promise3 = new Promise((resolve, reject) => {
-  setTimeout(resolve, 100, 'foo');
-});
-
-Promise.all([promise1, promise2, promise3]).then((values) => {
-  console.log(values);
-});
-// Expected output: Array [3, 42, "foo"]
- */

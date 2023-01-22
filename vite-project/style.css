@@ -60,3 +60,7 @@ body {
   width: 10vw;
   opacity: 0.8;
 }
+
+.gallery-modal > span {
+  font-size: 5vh;
+}
