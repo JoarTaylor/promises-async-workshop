@@ -17,7 +17,7 @@ export const getWeather = (url) => {
       document.querySelector('#app').appendChild(cityCard);
         
     }).catch(error => {
-      console.log(error);
+      cityCard.innerHTML = error;
     })
   }
 
@@ -46,6 +46,6 @@ const getAstronomical = (url) => {
   return axios.get(url).then(response => {
       astroEL.innerHTML = `Sunrise:  ${response.data.sunrise} <br> Sunset: ${response.data.sunset} <br> Moonrise:  ${response.data.moonrise} <br> Moonset: ${response.data.moonset}`
   }).catch(error => {
-    console.log(error);
+    astroEL.innerHTML = error;
   })
 }

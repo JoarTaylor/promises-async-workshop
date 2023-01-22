@@ -14,6 +14,7 @@ const getImage = () => {
     document.querySelector('.publisher').textContent = 'Made By: ' + response.data.results[randInt].user.name
   }).catch(error => {
     document.querySelector('.publisher').textContent = `Could not load image: ${error}`;
+    document.getElementById("app").style.backgroundImage = `url(404.jpg)`;
   })
 }
 

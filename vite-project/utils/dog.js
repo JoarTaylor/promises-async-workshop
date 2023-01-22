@@ -11,6 +11,6 @@ export const getDogBreed = (url) => {
       dogBreedEl.textContent = 'Random dog breed: ' + result[randInt][0]
 
     }).catch(error => {
-      console.log(error);
+      dogBreedEl.textContent = error;
     })
   }
