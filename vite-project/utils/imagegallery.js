@@ -11,7 +11,14 @@ for (let i = 0; i < 5; i++) {
     let myPromise = new Promise((resolve, reject) => {
         let getImg = () => {
             return axios.get(url).then(response => {
-                resolve(response.data.results[i].urls.raw)
+                let image = document.createElement('img');
+                image.src = response.data.results[i].urls.raw;
+                image.style.height = '15vh';
+                image.style.width = '15vw';
+                image.style.margin = '5px'
+                image.onload = function () {
+                    resolve(image)
+                }
             }).catch(error => {
                 reject(error)
                 let errorEl = document.createElement('p');
@@ -21,19 +28,13 @@ for (let i = 0; i < 5; i++) {
         }
         getImg();
     })
-
     promiseArr.push(myPromise);
     console.log(promiseArr)
 }
 
     Promise.all(promiseArr).then((values) => {
         values.forEach(value => {
-            let image = document.createElement('img');
-            image.src = value;
-            image.style.height = '15vh';
-            image.style.width = '15vw';
-            image.style.margin = '5px'
-            imagesModal.appendChild(image);
+            imagesModal.appendChild(value);
         })
     })
 }
