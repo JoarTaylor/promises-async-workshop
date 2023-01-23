@@ -12,7 +12,7 @@ const getImage = () => {
     document.getElementById("app").style.backgroundImage = `url(${response.data.results[randInt].urls.raw})`;
 
 
-    document.querySelector('.publisher').textContent = 'Made By: ' + response.data.results[randInt].user.name
+    document.querySelector('.publisher').textContent = 'Background picture by: ' + response.data.results[randInt].user.name
   }).catch(error => {
     document.querySelector('.publisher').textContent = `Could not load image: ${error}`;
     document.getElementById("app").style.backgroundImage = `url(404.jpg)`;

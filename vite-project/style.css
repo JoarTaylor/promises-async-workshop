@@ -64,3 +64,8 @@ body {
 .gallery-modal > span {
   font-size: 5vh;
 }
+
+.close:hover{
+  cursor: pointer;
+  background-color: rgb(187, 186, 186);
+}
